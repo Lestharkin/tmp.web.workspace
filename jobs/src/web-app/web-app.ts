@@ -2,7 +2,7 @@ import express, { Application } from 'express'
 import dotenv from 'dotenv'
 import path from 'path'
 
-export default class Server {
+export default class WebApp {
   #app: Application
 
   constructor () {
