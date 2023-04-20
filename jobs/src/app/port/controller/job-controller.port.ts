@@ -1,4 +1,4 @@
-import Job from '../../domain/Job.domain'
+import Job from '../../../domain/Job.domain'
 
 export default interface JobControllerPort {
   getJobs: (page: number) => Job[]

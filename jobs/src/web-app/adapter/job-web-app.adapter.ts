@@ -1,7 +1,10 @@
+import JobController from '../../app/controller/job.controller'
 import Job from '../../domain/Job.domain'
-import JobControllerPort from '../port/controller/job-controller.port'
+import JobAdapterWebAppPort from '../port/job-adapter-web-app.port'
 
-export default class JobController implements JobControllerPort {
+export default class JobWebAppAdapter implements JobAdapterWebAppPort {
+  constructor (private readonly jobController: JobController) { }
+
   getJobs = (page: number): Job[] => []
   getJobsByKeyword = (keyword: string, page: number): Job[] => []
   getJobsByCity = (name: string, page: number): Job[] => []

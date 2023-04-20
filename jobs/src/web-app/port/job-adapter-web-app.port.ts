@@ -1,4 +1,6 @@
-export default interface AdapterWebAppPort {
+import Job from '../../domain/Job.domain'
+
+export default interface JobAdapterWebAppPort {
   getJobs: (page: number) => Job[]
   getJobsByKeyword: (keyword: string, page: number) => Job[]
   getJobsByCity: (name: string, page: number) => Job[]
