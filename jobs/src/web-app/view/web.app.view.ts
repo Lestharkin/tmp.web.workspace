@@ -7,8 +7,11 @@ export default class WebAppView implements ViewWebAppPort {
   constructor (private readonly jobAdapterWebAppPort: JobAdapterWebAppPort) {}
 
   index (_req: Request, res: Response): void {
+    this.jobAdapterWebAppPort.getJobs(1)
     const model = {
-      jobs: this.jobAdapterWebAppPort.getJobs(1)
+      jobs: {
+        jobs: 
+      }
     }
     res.render('index', { data: model })
   }
