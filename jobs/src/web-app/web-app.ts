@@ -1,12 +1,8 @@
-import express, { Application } from 'express'
-import dotenv from 'dotenv'
-import path from 'path'
-import RouterWebAppPort from './port/router-web-app.port'
-
+import { RouterWebAppPort, Application, express, dotenv, path } from './web-app.dependency'
 export default class WebApp {
   #app: Application
 
-  constructor (private readonly routerWebAppPort: RouterWebAppPort) {
+  constructor (private readonly routerWebApp: RouterWebAppPort) {
     this.#app = express()
     this.#config()
     this.#routes()
@@ -17,13 +13,14 @@ export default class WebApp {
       path: path.join(__dirname, '../../config/.env.development')
     })
     this.#app.set('view engine', 'ejs')
-    this.#app.set('view', path.join(__dirname, '../template'))
+    this.#app.set('views', path.join(__dirname, '../template'))
     this.#app.use(express.static(path.join(__dirname, '../public')))
+    this.#app.use(express.urlencoded({ extended: true }))
   }
 
   #routes = (): void => {
-    this.#app.use('/', this.routerWebAppPort.router)
-    this.#app.use('*', this.routerWebAppPort.router)
+    this.#app.use('/', this.routerWebApp.router)
+    this.#app.use('*', this.routerWebApp.router)
   }
 
   start = (): void => {

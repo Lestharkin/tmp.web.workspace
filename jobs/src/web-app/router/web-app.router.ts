@@ -1,17 +1,19 @@
-import { Router } from 'express'
-import RouterWebAppPort from '../port/router-web-app.port'
-import ViewWebAppPort from '../port/view-web-app.port'
+import { Router, WebAppRouterPort, IndexWebAppViewPort, ErrorWebAppViewPort } from './web-app-router.dependency'
 
-export default class WebAppRouter implements RouterWebAppPort {
+export default class WebAppRouter implements WebAppRouterPort {
   router: Router
 
-  constructor (private readonly viewWebAppPort: ViewWebAppPort) {
+  constructor (
+    private readonly indexWebAppView: IndexWebAppViewPort,
+    private readonly errorWebAppView: ErrorWebAppViewPort
+  ) {
     this.router = Router()
     this.routes()
   }
 
   routes = (): void => {
-    this.router.get('/', this.viewWebAppPort.index.bind(this.viewWebAppPort))
-    this.router.get('/', this.viewWebAppPort.error.bind(this.viewWebAppPort))
+    this.router.get('/', this.indexWebAppView.index.bind(this.indexWebAppView))
+    this.router.get('/:page', this.indexWebAppView.index.bind(this.indexWebAppView))
+    this.router.get('/', this.errorWebAppView.error.bind(this.errorWebAppView))
   }
 }
