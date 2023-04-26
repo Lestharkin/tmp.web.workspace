@@ -6,6 +6,7 @@ import IndexViewWebAppPort from './index-web-app-view.port'
 import CityWebAppAdapterPort from '../../adapter/city/city-web-app-adapter.port'
 import JobWebAppAdapterPort from '../../adapter/job/job-web-app-adapter.port'
 import { CityIndexViewEntity, IndexViewEntity, JobIndexViewEntity } from './index-web-app-view.entity'
+import DateUtil from '../../../shared/util/date.util'
 
 export {
   Request,
@@ -18,5 +19,6 @@ export {
   JobWebAppAdapterPort,
   CityIndexViewEntity,
   IndexViewEntity,
-  JobIndexViewEntity
+  JobIndexViewEntity,
+  DateUtil
 }

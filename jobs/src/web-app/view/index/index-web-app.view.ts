@@ -1,4 +1,3 @@
-import DateUtil from '../../../shared/util/date.util'
 import {
   Request,
   Response,
@@ -9,7 +8,8 @@ import {
   JobWebAppAdapterPort,
   CityIndexViewEntity,
   IndexViewEntity,
-  JobIndexViewEntity
+  JobIndexViewEntity,
+  DateUtil
 } from './index-web-app-view.dependency'
 
 export default class IndexWebAppView implements IndexViewWebAppPort {
