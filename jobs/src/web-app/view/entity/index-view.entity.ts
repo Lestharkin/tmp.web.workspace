@@ -1,4 +1,4 @@
-export default interface index {
+export default interface IndexViewEntity {
   data: {
     jobs: [
       {
