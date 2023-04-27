@@ -21,12 +21,10 @@ export default class IndexWebAppView implements IndexViewWebAppPort {
 
   index (req: Request, res: Response): void {
     let { page } = req.params
+    if (page === null) page = '1'
     const r = /[^0-9]/
-    if (r.test(page)) {
-      page = '1'
-    }
-    console.log('page', page)
-    const pag: number = (page != null) ? Number(page) : 1
+    if (r.test(page)) page = '1'
+    const pag: number = Number(page)
     const jobList = this.jobWebAppAdapter.getJobs(pag)
     if (jobList.length === 0) {
       return res.redirect('/1')

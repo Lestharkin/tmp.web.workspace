@@ -92,30 +92,29 @@ export default class JobRepositoryJsonAdapter implements JobRepositoryJsonAdapte
   getJobsByRange = (start: number, end: number): Job[] => {
     try {
       const jobs: Job[] = []
-      if (end <= jobsJson.length) {
-        for (let index = start; index < end; index++) {
-          const city = new CityJsonAdapter().getById(jobsJson[index].location)
-          if (city == null) {
-            console.error('City not found')
-            return []
-          }
-          const category = new CategoryRepositoryJsonAdapter().getById(String(jobsJson[index].category))
-          if (category == null) {
-            console.error('Category not found')
-            return []
-          }
-          jobs.push(
-            {
-              id: jobsJson[index].id,
-              logo: jobsJson[index].logo,
-              company: jobsJson[index].company,
-              job: jobsJson[index].job,
-              location: city,
-              published: new Date(jobsJson[index].published),
-              category
-            }
-          )
+      if (end > jobsJson.length) end = jobsJson.length
+      for (let index = start; index < end; index++) {
+        const city = new CityJsonAdapter().getById(jobsJson[index].location)
+        if (city == null) {
+          console.error('City not found')
+          return []
         }
+        const category = new CategoryRepositoryJsonAdapter().getById(String(jobsJson[index].category))
+        if (category == null) {
+          console.error('Category not found')
+          return []
+        }
+        jobs.push(
+          {
+            id: jobsJson[index].id,
+            logo: jobsJson[index].logo,
+            company: jobsJson[index].company,
+            job: jobsJson[index].job,
+            location: city,
+            published: new Date(jobsJson[index].published),
+            category
+          }
+        )
       }
       return jobs
     } catch (error) {

@@ -7,6 +7,7 @@ export default class JobAppModel implements JobAppModelPort {
   getJobs = (page: number): Job[] => {
     const start = LIMIT * (page - 1)
     const end = LIMIT * page
+    console.log(`start: ${start}, end: ${end}`)
     return this.jobRepositoryJsonAdapter.getJobsByRange(start, end)
   }
 }
