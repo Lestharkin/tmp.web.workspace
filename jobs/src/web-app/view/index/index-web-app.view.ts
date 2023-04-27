@@ -19,7 +19,7 @@ export default class IndexWebAppView implements IndexViewWebAppPort {
     private readonly cityWebAppAdapter: CityWebAppAdapterPort
   ) { }
 
-  index (req: Request, res: Response): void {
+  index = (req: Request, res: Response): void => {
     let { page } = req.params
     if (page === null) page = '1'
     const r = /[^0-9]/
