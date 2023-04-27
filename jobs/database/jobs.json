@@ -43,5 +43,14 @@
     "location": "22198",
     "published": "2023-04-09",
     "category": 1
+  },
+  {
+    "id": 6,
+    "logo": "dropbox-icon.png",
+    "company": "CajoTa",
+    "job": "Full-Stack Software Engineer",
+    "location": "22198",
+    "published": "2023-04-09",
+    "category": 1
   }
 ]
